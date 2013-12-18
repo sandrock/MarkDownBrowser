@@ -1,0 +1,668 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SrkToolkit.Mvvm</name>
+    </assembly>
+    <members>
+        <member name="T:SrkToolkit.Mvvm.ViewModelBase">
+            <summary>
+            A base class for the ViewModel classes in the MVVM pattern.
+            </summary>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.ViewModelBase.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SrkToolkit.Mvvm.ViewModelBase"/> class.
+            Make sure you instantiate this in the UI thread so that the dispatcher can attach.
+            </summary>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.ViewModelBase.DispatchBackground(System.Action)">
+            <summary>
+            Executes the specified delegate asynchronously on the thread the <see cref="P:SrkToolkit.Mvvm.ViewModelBase.Dispatcher"/> is associated with at a <see cref="F:System.Windows.Threading.DispatcherPriority.Background"/> priority.
+            Will do nothing if <see cref="P:SrkToolkit.Mvvm.ViewModelBase.Dispatcher"/> is null or <see cref="P:SrkToolkit.Mvvm.ViewModelBase.Disposed"/> is true.
+            </summary>
+            <param name="action">
+            A delegate to a method that takes no arguments and does not return a value, which is pushed onto the <see cref="P:SrkToolkit.Mvvm.ViewModelBase.Dispatcher"/> event queue.
+            </param>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.ViewModelBase.DispatchApplicationIdle(System.Action)">
+            <summary>
+            Executes the specified delegate asynchronously on the thread the <see cref="P:SrkToolkit.Mvvm.ViewModelBase.Dispatcher"/> is associated with at a <see cref="F:System.Windows.Threading.DispatcherPriority.ApplicationIdle"/> priority.
+            Will do nothing if <see cref="P:SrkToolkit.Mvvm.ViewModelBase.Dispatcher"/> is null or <see cref="P:SrkToolkit.Mvvm.ViewModelBase.Disposed"/> is true.
+            </summary>
+            <param name="action">
+            A delegate to a method that takes no arguments and does not return a value, which is pushed onto the <see cref="P:SrkToolkit.Mvvm.ViewModelBase.Dispatcher"/> event queue.
+            </param>
+        </member>
+        <member name="F:SrkToolkit.Mvvm.ViewModelBase.dispatcher">
+            <summary>
+            Contains the UI Dispatcher.
+            Use the property <see cref="P:SrkToolkit.Mvvm.ViewModelBase.Dispatcher"/> instead.
+            </summary>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.ViewModelBase.Dispatch(System.Action)">
+            <summary>
+            Executes the specified delegate asynchronously on the thread the <see cref="P:SrkToolkit.Mvvm.ViewModelBase.Dispatcher"/> is associated with.
+            Will do nothing if <see cref="P:SrkToolkit.Mvvm.ViewModelBase.Dispatcher"/> is null or <see cref="P:SrkToolkit.Mvvm.ViewModelBase.Disposed"/> is true.
+            </summary>
+            <param name="action">
+            A delegate to a method that takes no arguments and does not return a value, which is pushed onto the <see cref="P:SrkToolkit.Mvvm.ViewModelBase.Dispatcher"/> event queue.
+            </param>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.ViewModelBase.SetValue``1(``0@,``0,System.String)">
+            <summary>
+            Changes a property's value and notifies the view.
+            </summary>
+            <typeparam name="T">the property type</typeparam>
+            <param name="property">a reference to a field</param>
+            <param name="value">the new value</param>
+            <param name="propertyName">the public property name for change notification</param>
+            <returns>
+            returns true if the new value is different from the old one
+            </returns>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.ViewModelBase.RaisePropertyChanged(System.String)">
+            <summary>
+            Raises the property changed.
+            </summary>
+            <param name="propertyName">Name of the property.</param>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.ViewModelBase.VerifyPropertyName(System.String)">
+            <summary>
+            Verifies the name of the property.
+            </summary>
+            <param name="propertyName">Name of the property.</param>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.ViewModelBase.Dispose(System.Boolean)">
+            <summary>
+            Dispose method to free resources.
+            The object will not be usable anymore.
+            Always call the parent method.
+            Clears the <see cref="P:SrkToolkit.Mvvm.ViewModelBase.Dispatcher"/>.
+            Clears the <see cref="E:SrkToolkit.Mvvm.ViewModelBase.PropertyChanged"/> event handler.
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="P:SrkToolkit.Mvvm.ViewModelBase.IsInDesignModeStatic">
+            <summary>
+            Gets a value indicating whether this instance is in design mode.
+            </summary>
+            <value>
+            	<c>true</c> if this instance is in design mode; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:SrkToolkit.Mvvm.ViewModelBase.Dispatcher">
+            <summary>
+            Gets or sets the UI Dispatcher.
+            </summary>
+        </member>
+        <member name="P:SrkToolkit.Mvvm.ViewModelBase.IsInDesignMode">
+            <summary>
+            Gets a value indicating whether is in design mode.
+            </summary>
+            <value>
+            <c>true</c> if is in design mode static; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="E:SrkToolkit.Mvvm.ViewModelBase.PropertyChanged">
+            <summary>
+            Occurs when a property value changes.
+            </summary>
+        </member>
+        <member name="P:SrkToolkit.Mvvm.ViewModelBase.Disposed">
+            <summary>
+            Gets a value indicating whether this instance is disposed.
+            </summary>
+            <value>
+              <c>true</c> if disposed; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:System.DataEventArgs`1">
+            <summary>
+             Generic arguments class to pass to event handlers that need to receive data.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:System.DataEventArgs`1.#ctor(`0)">
+            <summary>
+            Initializes the DataEventArgs class.
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:System.DataEventArgs`1.#ctor">
+            <summary>
+            Initializes the DataEventArgs class.
+            </summary>
+        </member>
+        <member name="P:System.DataEventArgs`1.Data">
+            <summary>
+            Gets the information related to the event.
+            </summary>
+        </member>
+        <member name="T:System.Windows.Threading.DispatcherExtensions">
+            <summary>
+            Extension methods for the <see cref="T:System.Windows.Threading.Dispatcher"/> class.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Threading.DispatcherExtensions.BeginInvoke(System.Windows.Threading.Dispatcher,System.Action)">
+            <summary>
+            Executes the specified delegate asynchronously on the thread that the <see cref="T:System.Windows.Threading.Dispatcher"/> was created on.
+            </summary>
+            <param name="dispatcher">The dispatcher.</param>
+            <param name="action">The action.</param>
+        </member>
+        <member name="M:System.Windows.Threading.DispatcherExtensions.BeginInvoke(System.Windows.Threading.Dispatcher,System.Action,System.Windows.Threading.DispatcherPriority)">
+            <summary>
+            Executes the specified delegate asynchronously on the thread that the <see cref="T:System.Windows.Threading.Dispatcher"/> was created on.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Threading.DispatcherExtensions.Invoke(System.Windows.Threading.Dispatcher,System.Action)">
+            <summary>
+            Executes the specified delegate synchronously on the thread that the <see cref="T:System.Windows.Threading.Dispatcher"/> was created on.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Threading.DispatcherExtensions.Invoke(System.Windows.Threading.Dispatcher,System.Action,System.Windows.Threading.DispatcherPriority)">
+            <summary>
+            Executes the specified delegate synchronously on the thread that the <see cref="T:System.Windows.Threading.Dispatcher"/> was created on.
+            </summary>
+        </member>
+        <member name="T:SrkToolkit.Mvvm.Tools.BusyTask">
+            <summary>
+            Represent a background task in a viewmodel.
+            </summary>
+        </member>
+        <member name="F:SrkToolkit.Mvvm.Tools.BusyTask.description">
+            <summary>
+            Contains a description.
+            Use the property <see cref="P:SrkToolkit.Mvvm.Tools.BusyTask.Description"/> instead.
+            </summary>
+        </member>
+        <member name="F:SrkToolkit.Mvvm.Tools.BusyTask.name">
+            <summary>
+            Contains the display name.
+            Use the property <see cref="P:SrkToolkit.Mvvm.Tools.BusyTask.Name"/> instead.
+            </summary>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.Tools.BusyTask.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SrkToolkit.Mvvm.Tools.BusyTask"/> class.
+            </summary>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.Tools.BusyTask.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SrkToolkit.Mvvm.Tools.BusyTask"/> class.
+            </summary>
+            <param name="key">The key.</param>
+        </member>
+        <member name="P:SrkToolkit.Mvvm.Tools.BusyTask.Message">
+            <summary>
+            Message to display like "Downloading data... ".
+            </summary>
+        </member>
+        <member name="P:SrkToolkit.Mvvm.Tools.BusyTask.Description">
+            <summary>
+            Gets or sets a description.
+            Not used by the BusyTask framework.
+            </summary>
+        </member>
+        <member name="P:SrkToolkit.Mvvm.Tools.BusyTask.Name">
+            <summary>
+            Gets or sets the display name.
+            </summary>
+        </member>
+        <member name="P:SrkToolkit.Mvvm.Tools.BusyTask.IsProcessing">
+            <summary>
+            Gets or sets a value indicating whether the task currently processing.
+            Will set <see cref="P:SrkToolkit.Mvvm.Tools.BusyTask.IsQueued"/> to false.
+            </summary>
+            <value>
+              <c>true</c> if the task currently processing; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:SrkToolkit.Mvvm.Tools.BusyTask.IsNotProcessing">
+            <summary>
+            Gets a value indicating whether the task not currently processing.
+            Will set <see cref="P:SrkToolkit.Mvvm.Tools.BusyTask.IsQueued"/> to false.
+            </summary>
+            <value>
+              <c>true</c> if the task not currently processing; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:SrkToolkit.Mvvm.Tools.BusyTask.IsQueued">
+            <summary>
+            Gets or sets a informative value indicating whether this task is queued for execution.
+            Not used by the BusyTask framework.
+            </summary>
+            <value>
+              <c>true</c> if this task is queued for execution; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:SrkToolkit.Mvvm.Tools.BusyTask.QueuedAction">
+            <summary>
+            Gets or sets the queued action.
+            Not used by the BusyTask framework.
+            </summary>
+            <value>
+            The queued action.
+            </value>
+        </member>
+        <member name="P:SrkToolkit.Mvvm.Tools.BusyTask.Type">
+            <summary>
+            Optionnal task type.
+            Permit to display a red/green message.
+            </summary>
+        </member>
+        <member name="P:SrkToolkit.Mvvm.Tools.BusyTask.IsError">
+            <summary>
+            Simple accessor linked to <see cref="P:SrkToolkit.Mvvm.Tools.BusyTask.Type"/>.
+            </summary>
+        </member>
+        <member name="P:SrkToolkit.Mvvm.Tools.BusyTask.IsConfirmation">
+            <summary>
+            Simple accessor linked to <see cref="P:SrkToolkit.Mvvm.Tools.BusyTask.Type"/>.
+            </summary>
+        </member>
+        <member name="P:SrkToolkit.Mvvm.Tools.BusyTask.Key">
+            <summary>
+            Unique key.
+            </summary>
+        </member>
+        <member name="P:SrkToolkit.Mvvm.Tools.BusyTask.IsGlobal">
+            <summary>
+            If both <see cref="P:SrkToolkit.Mvvm.Tools.BusyTask.IsGlobal"/> and <see cref="P:SrkToolkit.Mvvm.Tools.BusyTask.IsProcessing"/>,
+            permits to freeze the UI with <see cref="P:SrkToolkit.Mvvm.Tools.BusyTaskCollection.IsBusy"/>.
+            </summary>
+        </member>
+        <member name="T:SrkToolkit.Mvvm.Tools.IMessageBoxService">
+            <summary>
+            Abstraction of a MessageBox.
+            </summary>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.Tools.IMessageBoxService.Show(System.String)">
+            <summary>
+            Displays a message box that contains the specified text and an OK button.
+            </summary>
+            <param name="messageBoxText">The message to display.</param>
+            <returns>System.Windows.MessageBoxResult.OK in all cases.</returns>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.Tools.IMessageBoxService.Show(System.String,System.String,System.Windows.MessageBoxButton)">
+            <summary>
+            Displays a message box that contains the specified text, title bar caption, and response buttons.
+            </summary>
+            <param name="messageBoxText">The message to display.</param>
+            <param name="caption">The title of the message box.</param>
+            <param name="button">A value that indicates the button or buttons to display.</param>
+            <returns>A value that indicates the user's response to the message.</returns>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.Tools.IMessageBoxService.ShowDebug(System.String)">
+            <summary>
+            Displays a message box that contains the specified text and an OK button only when debugging.
+            </summary>
+            <param name="messageBoxText">The message to display.</param>
+            <returns>System.Windows.MessageBoxResult.OK in all cases.</returns>
+        </member>
+        <member name="T:SrkToolkit.Mvvm.Commands.RelayCommand`1">
+            <summary>
+            Classic generic RelayCommand implementation for the MVVM pattern.
+            </summary>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.Commands.RelayCommand`1.#ctor(System.Action{`0})">
+            <summary>
+            Create a new instance that can always execute.
+            </summary>
+            <param name="execute">the action to execute</param>
+            <exception cref="T:System.ArgumentNullException">If the execute argument is null.</exception>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.Commands.RelayCommand`1.#ctor(System.Action{`0},System.Predicate{`0},System.Boolean)">
+            <summary>
+            Initializes a new instance of the RelayCommand class.
+            </summary>
+            <param name="execute">The execution logic.</param>
+            <param name="canExecute">The execution status logic.</param>
+            <param name="canExecutePreventsExecute">if set to <c>true</c> the canExecute predicate prevents execution.</param>
+            <exception cref="T:System.ArgumentNullException">If the execute argument is null.</exception>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.Commands.RelayCommand`1.CanExecute(System.Object)">
+            <summary>
+            Defines the method that determines whether the command can execute in its current state.
+            </summary>
+            <param name="parameter">This parameter will always be ignored.</param>
+            <returns>true if this command can be executed; otherwise, false.</returns>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.Commands.RelayCommand`1.Execute(System.Object)">
+            <summary>
+            Defines the method to be called when the command is invoked. 
+            </summary>
+            <param name="parameter">This parameter will always be ignored.</param>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.Commands.RelayCommand`1.RaiseCanExecuteChanged">
+            <summary>
+            Raises the <see cref="E:GalaSoft.MvvmLight.Command.RelayCommand.CanExecuteChanged" /> event.
+            </summary>
+        </member>
+        <member name="E:SrkToolkit.Mvvm.Commands.RelayCommand`1.CanExecuteChanged">
+            <summary>
+            Event for the CanExecute feature.
+            </summary>
+        </member>
+        <member name="T:SrkToolkit.Mvvm.Tools.BusyTaskCollection">
+            <summary>
+            Represent background tasks in a viewmodel.
+            </summary>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.Tools.BusyTaskCollection.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SrkToolkit.Mvvm.Tools.BusyTaskCollection"/> class.
+            </summary>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.Tools.BusyTaskCollection.Add(System.String,System.Boolean)">
+            <summary>
+            Create a task.
+            </summary>
+            <param name="key"></param>
+            <param name="isGlobal">pass true to freeze the UI when processing</param>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.Tools.BusyTaskCollection.Add(System.Enum,System.Boolean)">
+            <summary>
+            Create a task.
+            </summary>
+            <param name="key">The task key.</param>
+            <param name="isGlobal">pass true to freeze the UI when processing</param>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.Tools.BusyTaskCollection.Update(System.String,System.String,System.Boolean,SrkToolkit.Mvvm.Tools.BusyTaskType)">
+            <summary>
+            Updates the specified key.
+            </summary>
+            <param name="key">The task key.</param>
+            <param name="message">The message.</param>
+            <param name="isProcessing">if set to <c>true</c> [is processing].</param>
+            <param name="type">The type.</param>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.Tools.BusyTaskCollection.InsertItem(System.Int32,SrkToolkit.Mvvm.Tools.BusyTask)">
+            <summary>
+            Inserts the item.
+            </summary>
+            <param name="index">The index.</param>
+            <param name="item">The item.</param>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.Tools.BusyTaskCollection.RemoveItem(System.Int32)">
+            <summary>
+            Removes the item.
+            </summary>
+            <param name="index">The index.</param>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.Tools.BusyTaskCollection.ClearItems">
+            <summary>
+            Clears the items.
+            </summary>
+        </member>
+        <member name="P:SrkToolkit.Mvvm.Tools.BusyTaskCollection.IsBusy">
+            <summary>
+            Permits to disable the whole UI for a blocking task.
+            </summary>
+        </member>
+        <member name="P:SrkToolkit.Mvvm.Tools.BusyTaskCollection.IsNotBusy">
+            <summary>
+            Permits to disable the whole UI for a blocking task.
+            </summary>
+        </member>
+        <member name="P:SrkToolkit.Mvvm.Tools.BusyTaskCollection.IsProcessing">
+            <summary>
+            Permits to show the user a background task is performing.
+            </summary>
+        </member>
+        <member name="P:SrkToolkit.Mvvm.Tools.BusyTaskCollection.IsNotProcessing">
+            <summary>
+            Permits to show the user a background task is performing.
+            </summary>
+        </member>
+        <member name="P:SrkToolkit.Mvvm.Tools.BusyTaskCollection.Item(System.Enum)">
+            <summary>
+            Get a task by key.
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="P:SrkToolkit.Mvvm.Tools.BusyTaskCollection.Item(System.String)">
+            <summary>
+            Get a task by key.
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="P:SrkToolkit.Mvvm.Tools.BusyTaskCollection.AggregateMessage">
+            <summary>
+            Message aggreagated form all tasks currently busy.
+            </summary>
+        </member>
+        <member name="E:SrkToolkit.Mvvm.Tools.BusyTaskCollection.StateChangedEvent">
+            <summary>
+            Occurs when a task state changed.
+            </summary>
+        </member>
+        <member name="T:SrkToolkit.Mvvm.VisualStateChangeEventArgs">
+            <summary>
+            Used to command a visual state transition.
+            </summary>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.VisualStateChangeEventArgs.#ctor(System.String,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SrkToolkit.Mvvm.VisualStateChangeEventArgs"/> class.
+            </summary>
+            <param name="stateName">Name of the state to reach.</param>
+            <param name="useTransitions">if set to <c>true</c> [use transitions].</param>
+        </member>
+        <member name="P:SrkToolkit.Mvvm.VisualStateChangeEventArgs.StateName">
+            <summary>
+            Gets the name of the state to reach.
+            </summary>
+            <value>
+            The name of the state to reach.
+            </value>
+        </member>
+        <member name="P:SrkToolkit.Mvvm.VisualStateChangeEventArgs.UseTransitions">
+            <summary>
+            Gets a value indicating whether [use transitions].
+            </summary>
+            <value>
+              <c>true</c> if [use transitions]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:SrkToolkit.Mvvm.VisualStateChangeEventArgs.Succeed">
+            <summary>
+            Gets or sets a value indicating whether the <see cref="T:SrkToolkit.Mvvm.VisualStateChangeEventArgs"/> succeed.
+            </summary>
+            <value>
+              <c>true</c> if operation succeed; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:SrkToolkit.Mvvm.Tools.MessageBoxService">
+            <summary>
+            Abstraction of the MessageBox component. 
+            </summary>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.Tools.MessageBoxService.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SrkToolkit.Mvvm.Tools.MessageBoxService"/> class using the real MessageBox implementation.
+            </summary>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.Tools.MessageBoxService.#ctor(System.Func{System.String,System.String,System.Windows.MessageBoxButton,System.Windows.MessageBoxResult})">
+            <summary>
+            Initializes a new instance of the <see cref="T:SrkToolkit.Mvvm.Tools.MessageBoxService"/> class using a fake MessageBox implementation.
+            </summary>
+            <param name="action">The action.</param>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.Tools.MessageBoxService.ShowDebug(System.String)">
+            <summary>
+            Displays a message box that contains the specified text and an OK button only when debugging.
+            </summary>
+            <param name="messageBoxText">The message to display.</param>
+            <returns>
+            System.Windows.MessageBoxResult.OK in all cases.
+            </returns>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.Tools.MessageBoxService.Show(System.String)">
+            <summary>
+            Displays a message box that contains the specified text and an OK button.
+            </summary>
+            <param name="messageBoxText">The message to display.</param>
+            <returns>
+            System.Windows.MessageBoxResult.OK in all cases.
+            </returns>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.Tools.MessageBoxService.Show(System.String,System.String,System.Windows.MessageBoxButton)">
+            <summary>
+            Displays a message box that contains the specified text, title bar caption, and response buttons.
+            </summary>
+            <param name="messageBoxText">The message to display.</param>
+            <param name="caption">The title of the message box.</param>
+            <param name="button">A value that indicates the button or buttons to display.</param>
+            <returns>
+            A value that indicates the user's response to the message.
+            </returns>
+        </member>
+        <member name="T:SrkToolkit.Mvvm.Commands.RelayCommand">
+            <summary>
+            Classic RelayCommand implementation for the MVVM pattern.
+            </summary>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.Commands.RelayCommand.#ctor(System.Action)">
+            <summary>
+            Create a new instance that can always execute.
+            </summary>
+            <param name="execute">the action to execute</param>
+            <exception cref="T:System.ArgumentNullException">If the execute argument is null.</exception>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.Commands.RelayCommand.#ctor(System.Action,System.Func{System.Boolean},System.Boolean)">
+            <summary>
+            Initializes a new instance of the RelayCommand class.
+            </summary>
+            <param name="execute">The execution logic.</param>
+            <param name="canExecute">The execution status logic.</param>
+            <param name="canExecutePreventsExecute">if set to <c>true</c> the canExecute predicate prevents execution.</param>
+            <exception cref="T:System.ArgumentNullException">If the execute argument is null.</exception>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.Commands.RelayCommand.CanExecute(System.Object)">
+            <summary>
+            Defines the method that determines whether the command can execute in its current state.
+            </summary>
+            <param name="parameter">This parameter will always be ignored.</param>
+            <returns>true if this command can be executed; otherwise, false.</returns>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.Commands.RelayCommand.Execute(System.Object)">
+            <summary>
+            Defines the method to be called when the command is invoked. 
+            </summary>
+            <param name="parameter">This parameter will always be ignored.</param>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.Commands.RelayCommand.RaiseCanExecuteChanged">
+            <summary>
+            Raises the <see cref="E:GalaSoft.MvvmLight.Command.RelayCommand.CanExecuteChanged" /> event.
+            </summary>
+        </member>
+        <member name="E:SrkToolkit.Mvvm.Commands.RelayCommand.CanExecuteChanged">
+            <summary>
+            Event for the CanExecute feature.
+            </summary>
+        </member>
+        <member name="T:SrkToolkit.Mvvm.InteractionViewModelBase">
+            <summary>
+            Higher-level ViewModel base with tasks and MessageBox abstraction.
+            </summary>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.InteractionViewModelBase.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SrkToolkit.Mvvm.InteractionViewModelBase"/> class.
+            Make sure you instantiate this in the UI thread so that the dispatcher can attach.
+            </summary>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.InteractionViewModelBase.#ctor(SrkToolkit.Mvvm.InteractionViewModelBase)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SrkToolkit.Mvvm.InteractionViewModelBase"/> class.
+            Make sure you instantiate this in the UI thread so that the dispatcher can attach.
+            </summary>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.InteractionViewModelBase.CreateTask(System.String,System.Boolean)">
+            <summary>
+            Initialize a task.
+            </summary>
+            <param name="key"></param>
+            <param name="isGlobal"></param>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.InteractionViewModelBase.CreateTask(System.String,System.Boolean,System.String)">
+            <summary>
+            Initialize a task.
+            </summary>
+            <param name="key"></param>
+            <param name="isGlobal"></param>
+            <param name="name">the display name</param>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.InteractionViewModelBase.UpdateTask(System.String,System.Boolean,System.String,SrkToolkit.Mvvm.Tools.BusyTaskType)">
+            <summary>
+            Update a task status.
+            </summary>
+            <param name="key"></param>
+            <param name="isProcessing"></param>
+            <param name="type"></param>
+            <param name="message"></param>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.InteractionViewModelBase.UpdateTask(System.String,System.String,System.Boolean,SrkToolkit.Mvvm.Tools.BusyTaskType)">
+            <summary>
+            Update a task status.
+            </summary>
+            <param name="key"></param>
+            <param name="isProcessing"></param>
+            <param name="type"></param>
+            <param name="message"></param>
+        </member>
+        <member name="M:SrkToolkit.Mvvm.InteractionViewModelBase.UpdateTask(System.String,System.Exception,System.String,System.Boolean,SrkToolkit.Mvvm.Tools.BusyTaskType)">
+            <summary>
+            Update a task status with an exception message.
+            </summary>
+            <param name="key">The key.</param>
+            <param name="exception">The exception.</param>
+            <param name="message">The message.</param>
+            <param name="isProcessing">if set to <c>true</c> [is processing].</param>
+            <param name="type">The type.</param>
+        </member>
+        <member name="P:SrkToolkit.Mvvm.InteractionViewModelBase.Tasks">
+            <summary>
+            This collection contains tasks that are being processed.
+            Nice properties are Tasks.IsBusy and Tasks.IsProcessing.
+            Access tasks from the view with 
+              - {Binding Tasks[AutoLogin].IsProcessing}
+              - {Binding Tasks[AutoLogin].Message}
+            </summary>
+        </member>
+        <member name="P:SrkToolkit.Mvvm.InteractionViewModelBase.Mbox">
+            <summary>
+            MessageBox abstraction.
+            You can replace this for unit-testing.
+            </summary>
+        </member>
+        <member name="T:SrkToolkit.Mvvm.Tools.BusyTaskType">
+            <summary>
+            Represents the state of a task.
+            </summary>
+        </member>
+        <member name="F:SrkToolkit.Mvvm.Tools.BusyTaskType.Default">
+            <summary>
+            Normal state.
+            </summary>
+        </member>
+        <member name="F:SrkToolkit.Mvvm.Tools.BusyTaskType.Confirmation">
+            <summary>
+            The operation was successful.
+            </summary>
+        </member>
+        <member name="F:SrkToolkit.Mvvm.Tools.BusyTaskType.Error">
+            <summary>
+            The operation failed.
+            </summary>
+        </member>
+        <member name="F:SrkToolkit.Mvvm.Tools.BusyTaskType.Warning">
+            <summary>
+            The operation encoutered an issue.
+            </summary>
+        </member>
+    </members>
+</doc>

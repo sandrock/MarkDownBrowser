@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Markdown.Xaml</name>
+    </assembly>
+    <members>
+        <member name="F:Markdown.Xaml.Markdown._nestDepth">
+            <summary>
+            maximum nested depth of [] and () supported by the transform; implementation detail
+            </summary>
+        </member>
+        <member name="F:Markdown.Xaml.Markdown._tabWidth">
+            <summary>
+            Tabs are automatically converted to spaces as part of the transform  
+            this constant determines how "wide" those tabs become in spaces  
+            </summary>
+        </member>
+        <member name="M:Markdown.Xaml.Markdown.RunBlockGamut(System.String)">
+            <summary>
+            Perform transformations that form block-level tags like paragraphs, headers, and list items.
+            </summary>
+        </member>
+        <member name="M:Markdown.Xaml.Markdown.RunSpanGamut(System.String)">
+            <summary>
+            Perform transformations that occur *within* block-level tags like paragraphs, headers, and list items.
+            </summary>
+        </member>
+        <member name="M:Markdown.Xaml.Markdown.FormParagraphs(System.String)">
+            <summary>
+            splits on two or more newlines, to form "paragraphs";    
+            </summary>
+        </member>
+        <member name="M:Markdown.Xaml.Markdown.GetNestedBracketsPattern">
+            <summary>
+            Reusable pattern to match balanced [brackets]. See Friedl's 
+            "Mastering Regular Expressions", 2nd Ed., pp. 328-331.
+            </summary>
+        </member>
+        <member name="M:Markdown.Xaml.Markdown.GetNestedParensPattern">
+            <summary>
+            Reusable pattern to match balanced (parens). See Friedl's 
+            "Mastering Regular Expressions", 2nd Ed., pp. 328-331.
+            </summary>
+        </member>
+        <member name="M:Markdown.Xaml.Markdown.DoAnchors(System.String,System.Func{System.String,System.Collections.Generic.IEnumerable{System.Windows.Documents.Inline}})">
+            <summary>
+            Turn Markdown link shortcuts into hyperlinks
+            </summary>
+            <remarks>
+            [link text](url "title") 
+            </remarks>
+        </member>
+        <member name="M:Markdown.Xaml.Markdown.DoHeaders(System.String,System.Func{System.String,System.Collections.Generic.IEnumerable{System.Windows.Documents.Block}})">
+            <summary>
+            Turn Markdown headers into HTML header tags
+            </summary>
+            <remarks>
+            Header 1  
+            ========  
+            
+            Header 2  
+            --------  
+            
+            # Header 1  
+            ## Header 2  
+            ## Header 2 with closing hashes ##  
+            ...  
+            ###### Header 6  
+            </remarks>
+        </member>
+        <member name="M:Markdown.Xaml.Markdown.DoHorizontalRules(System.String,System.Func{System.String,System.Collections.Generic.IEnumerable{System.Windows.Documents.Block}})">
+            <summary>
+            Turn Markdown horizontal rules into HTML hr tags
+            </summary>
+            <remarks>
+            ***  
+            * * *  
+            ---
+            - - -
+            </remarks>
+        </member>
+        <member name="M:Markdown.Xaml.Markdown.DoLists(System.String,System.Func{System.String,System.Collections.Generic.IEnumerable{System.Windows.Documents.Block}})">
+            <summary>
+            Turn Markdown lists into HTML ul and ol and li tags
+            </summary>
+        </member>
+        <member name="M:Markdown.Xaml.Markdown.ProcessListItems(System.String,System.String)">
+            <summary>
+            Process the contents of a single ordered or unordered list, splitting it
+            into individual list items.
+            </summary>
+        </member>
+        <member name="M:Markdown.Xaml.Markdown.DoCodeSpans(System.String,System.Func{System.String,System.Collections.Generic.IEnumerable{System.Windows.Documents.Inline}})">
+            <summary>
+            Turn Markdown `code spans` into HTML code tags
+            </summary>
+        </member>
+        <member name="M:Markdown.Xaml.Markdown.DoItalicsAndBold(System.String,System.Func{System.String,System.Collections.Generic.IEnumerable{System.Windows.Documents.Inline}})">
+            <summary>
+            Turn Markdown *italics* and **bold** into HTML strong and em tags
+            </summary>
+        </member>
+        <member name="M:Markdown.Xaml.Markdown.Outdent(System.String)">
+            <summary>
+            Remove one level of line-leading spaces
+            </summary>
+        </member>
+        <member name="M:Markdown.Xaml.Markdown.Normalize(System.String)">
+            <summary>
+            convert all tabs to _tabWidth spaces; 
+            standardizes line endings from DOS (CR LF) or Mac (CR) to UNIX (LF); 
+            makes sure text ends with a couple of newlines; 
+            removes any blank lines (only spaces) in the text
+            </summary>
+        </member>
+        <member name="M:Markdown.Xaml.Markdown.RepeatString(System.String,System.Int32)">
+            <summary>
+            this is to emulate what's evailable in PHP
+            </summary>
+        </member>
+        <member name="P:Markdown.Xaml.Markdown.StrictBoldItalic">
+            <summary>
+            when true, bold and italic require non-word characters on either side  
+            WARNING: this is a significant deviation from the markdown spec
+            </summary>
+            
+        </member>
+        <member name="M:Markdown.Xaml.TextToFlowDocumentConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a value. 
+            </summary>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+        </member>
+        <member name="M:Markdown.Xaml.TextToFlowDocumentConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a value. 
+            </summary>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+            <param name="value">The value that is produced by the binding target.</param>
+            <param name="targetType">The type to convert to.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+        </member>
+    </members>
+</doc>

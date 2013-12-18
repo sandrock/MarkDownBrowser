@@ -1,0 +1,421 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SrkToolkit.Xaml</name>
+    </assembly>
+    <members>
+        <member name="T:SrkToolkit.Xaml.Behaviors.InputEnterBehavior">
+            <summary>
+            Permits to focus the next input control when pressing enter.
+            A command can be associated instead of a next control for execution.
+            </summary>
+        </member>
+        <member name="F:SrkToolkit.Xaml.Behaviors.InputEnterBehavior.disposed">
+            <summary>
+            Indicates the object was disposed.
+            </summary>
+        </member>
+        <member name="F:SrkToolkit.Xaml.Behaviors.InputEnterBehavior.CommandProperty">
+            <summary>
+            The dependency property for the <see cref="P:SrkToolkit.Xaml.Behaviors.InputEnterBehavior.Command"/> property.
+            </summary>
+        </member>
+        <member name="F:SrkToolkit.Xaml.Behaviors.InputEnterBehavior.CommandParameterProperty">
+            <summary>
+            The dependency property for the <see cref="P:SrkToolkit.Xaml.Behaviors.InputEnterBehavior.CommandParameter"/> property.
+            </summary>
+        </member>
+        <member name="F:SrkToolkit.Xaml.Behaviors.InputEnterBehavior.NextControlProperty">
+            <summary>
+            The dependency property for the <see cref="P:SrkToolkit.Xaml.Behaviors.InputEnterBehavior.NextControl"/> property.
+            </summary>
+        </member>
+        <member name="F:SrkToolkit.Xaml.Behaviors.InputEnterBehavior.AcceptsEmptyProperty">
+            <summary>
+            The dependency property for the <see cref="P:SrkToolkit.Xaml.Behaviors.InputEnterBehavior.AcceptsEmpty"/> property.
+            </summary>
+        </member>
+        <member name="F:SrkToolkit.Xaml.Behaviors.InputEnterBehavior.FocusOnLoadedProperty">
+            <summary>
+            The dependency property for the <see cref="P:SrkToolkit.Xaml.Behaviors.InputEnterBehavior.FocusOnLoaded"/> property.
+            </summary>
+        </member>
+        <member name="M:SrkToolkit.Xaml.Behaviors.InputEnterBehavior.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:SrkToolkit.Xaml.Behaviors.InputEnterBehavior.Dispose(System.Boolean)">
+            <summary>
+            Releases managed and - optionally - unmanaged resources
+            </summary>
+            <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        </member>
+        <member name="M:SrkToolkit.Xaml.Behaviors.InputEnterBehavior.OnAttached">
+            <summary>
+            Called after the behavior is attached to an AssociatedObject.
+            </summary>
+        </member>
+        <member name="M:SrkToolkit.Xaml.Behaviors.InputEnterBehavior.OnDetaching">
+            <summary>
+            Called when the behavior is being detached from its AssociatedObject, but before it has actually occurred.
+            </summary>
+        </member>
+        <member name="M:SrkToolkit.Xaml.Behaviors.InputEnterBehavior.OnFocusOnLoadedPropertyChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Called when some dependency property values changes.
+            </summary>
+            <param name="d">The dependency object.</param>
+            <param name="e">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:SrkToolkit.Xaml.Behaviors.InputEnterBehavior.OnKeyUp(System.Object,System.Windows.Input.KeyEventArgs)">
+            <summary>
+            Called when [key up].
+            </summary>
+            <param name="e">The event args.</param>
+        </member>
+        <member name="P:SrkToolkit.Xaml.Behaviors.InputEnterBehavior.Command">
+            <summary>
+            Gets or sets the command to execute when Enter key is pressed.
+            This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:SrkToolkit.Xaml.Behaviors.InputEnterBehavior.CommandParameter">
+            <summary>
+            Gets or sets the command parameter.
+            This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:SrkToolkit.Xaml.Behaviors.InputEnterBehavior.NextControl">
+            <summary>
+            Gets or sets the next control to focus when Enter key is pressed.
+            This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:SrkToolkit.Xaml.Behaviors.InputEnterBehavior.AcceptsEmpty">
+            <summary>
+            Gets or sets a value indicating whether to accept an empty input value.
+            </summary>
+            <value>
+              <c>true</c> if to accept an empty input value; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:SrkToolkit.Xaml.Behaviors.InputEnterBehavior.FocusOnLoaded">
+            <summary>
+            Gets or sets a value indicating whether to focus on this element when loaded.
+            This is a dependency property.
+            </summary>
+        </member>
+        <member name="E:SrkToolkit.Xaml.Behaviors.InputEnterBehavior.ExecuteEvent">
+            <summary>
+            Occurs when [execute event].
+            </summary>
+        </member>
+        <member name="T:SrkToolkit.Xaml.Behaviors.ListBoxScrollBehavior">
+            <summary>
+            This behaviors helps detect a <see cref="T:System.Windows.Controls.ListBox"/> is scrolled to the bottom by executing a <see cref="T:System.Windows.Input.ICommand"/>.
+            </summary>
+        </member>
+        <member name="F:SrkToolkit.Xaml.Behaviors.ListBoxScrollBehavior.scrollViewer">
+            <summary>
+            The <see cref="T:System.Windows.Controls.ScrollViewer"/> found within the ListBox.
+            </summary>
+        </member>
+        <member name="M:SrkToolkit.Xaml.Behaviors.ListBoxScrollBehavior.GetReachedBottomCommand(System.Windows.DependencyObject)">
+            <summary>
+            Gets the "reached bottom" command.
+            </summary>
+            <param name="obj">The dependency object.</param>
+            <returns>the command</returns>
+        </member>
+        <member name="M:SrkToolkit.Xaml.Behaviors.ListBoxScrollBehavior.SetReachedBottomCommand(System.Windows.DependencyObject,System.Windows.Input.ICommand)">
+            <summary>
+            Sets the "reached bottom" command.
+            </summary>
+            <param name="obj">The dependency object.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="F:SrkToolkit.Xaml.Behaviors.ListBoxScrollBehavior.ReachedBottomCommandProperty">
+            <summary>
+            The ReachedBottomCommand attached property.
+            </summary>
+        </member>
+        <member name="M:SrkToolkit.Xaml.Behaviors.ListBoxScrollBehavior.GetReachedBottomCommandParameter(System.Windows.DependencyObject)">
+            <summary>
+            Gets the reached bottom command parameter.
+            </summary>
+            <param name="obj">The obj.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SrkToolkit.Xaml.Behaviors.ListBoxScrollBehavior.SetReachedBottomCommandParameter(System.Windows.DependencyObject,System.Object)">
+            <summary>
+            Sets the reached bottom command parameter.
+            </summary>
+            <param name="obj">The obj.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="F:SrkToolkit.Xaml.Behaviors.ListBoxScrollBehavior.ReachedBottomCommandParameterProperty">
+            <summary>
+            The ReachedBottomCommandParameter attached property.
+            </summary>
+        </member>
+        <member name="F:SrkToolkit.Xaml.Behaviors.ListBoxScrollBehavior.ListBoxScrollBehaviorProperty">
+            <summary>
+            The ListBoxScrollBehavior attached property.
+            </summary>
+        </member>
+        <member name="M:SrkToolkit.Xaml.Behaviors.ListBoxScrollBehavior.OnVerticalOffsetPropertyChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Called when the scrollviewer's vertical offset property changed.
+            </summary>
+            <param name="d">The listbox.</param>
+            <param name="e">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:SrkToolkit.Xaml.Behaviors.ListBoxScrollBehavior.GetScrollViewerVerticalOffset(System.Windows.DependencyObject)">
+            <summary>
+            Gets the scroll viewer vertical offset.
+            </summary>
+            <param name="obj">The dependency object.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SrkToolkit.Xaml.Behaviors.ListBoxScrollBehavior.SetScrollViewerVerticalOffset(System.Windows.DependencyObject,System.Double)">
+            <summary>
+            Sets the scroll viewer vertical offset.
+            </summary>
+            <param name="obj">The dependency object.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="F:SrkToolkit.Xaml.Behaviors.ListBoxScrollBehavior.ScrollViewerVerticalOffsetProperty">
+            <summary>
+            The ScrollViewerVerticalOffset attached property.
+            </summary>
+        </member>
+        <member name="M:SrkToolkit.Xaml.Behaviors.ListBoxScrollBehavior.OnAttached">
+            <summary>
+            Called after the behavior is attached to an AssociatedObject.
+            </summary>
+        </member>
+        <member name="M:SrkToolkit.Xaml.Behaviors.ListBoxScrollBehavior.OnDetaching">
+            <summary>
+            Called when the behavior is being detached from its AssociatedObject, but before it has actually occurred.
+            </summary>
+        </member>
+        <member name="M:SrkToolkit.Xaml.Behaviors.ListBoxScrollBehavior.OnVerticalOffsetChanged">
+            <summary>
+            Called when the scrollviewer's vertical offset change.
+            </summary>
+        </member>
+        <member name="T:System.Windows.DependencyObjectExtensions">
+            <summary>
+            Extension methods for <see cref="T:System.Windows.DependencyObject"/>s.
+            </summary>
+        </member>
+        <member name="M:System.Windows.DependencyObjectExtensions.GetChildrenRecursive``1(System.Windows.DependencyObject,System.Boolean)">
+            <summary>
+            Gets the visual children of a <see cref="T:System.Windows.DependencyObject"/> with the specified type.
+            Stops recursion on object found.
+            </summary>
+            <typeparam name="T">the type of object to find</typeparam>
+            <param name="control">The control.</param>
+            <param name="stopRecursionOnObjectFound">if set to <c>true</c> stops recursion on object found; otherwise <b>false</b>.</param>
+            <returns>
+            a collection of objects of the specified type
+            </returns>
+        </member>
+        <member name="T:SrkToolkit.Xaml.Internal.CompositeDisposable">
+            <summary>
+            Holds a list of disposable object for mass Dispose()ition.
+            Not thread-safe.
+            </summary>
+        </member>
+        <member name="M:SrkToolkit.Xaml.Internal.CompositeDisposable.Add``1(``0)">
+            <summary>
+            Adds the specified disposable and returns it.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="disposable">The disposable.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SrkToolkit.Xaml.Internal.CompositeDisposable.Add``1(System.IDisposable)">
+            <summary>
+            Adds the specified disposable.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="disposable">The disposable.</param>
+        </member>
+        <member name="M:SrkToolkit.Xaml.Internal.CompositeDisposable.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:SrkToolkit.Xaml.Internal.CompositeDisposable.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources
+            </summary>
+            <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        </member>
+        <member name="T:SrkToolkit.Xaml.Behaviors.WindowControls">
+            <summary>
+            
+            </summary>
+            <remarks>
+            http://10rem.net/blog/2010/01/09/a-wpf-behavior-for-window-resize-events-in-net-35
+            http://digitalmoosetracks.com/blog/wpf-transparent-window-with-resizing
+            http://www.codeproject.com/KB/WPF/WPF_Window_Resizing.aspx
+            </remarks>
+        </member>
+        <member name="P:SrkToolkit.Xaml.Behaviors.WindowControls.MaximizeCommand">
+            <summary>
+            Maximize/windowize command.
+            To be bound in the view.
+            </summary>
+        </member>
+        <member name="P:SrkToolkit.Xaml.Behaviors.WindowControls.MinimizeCommand">
+            <summary>
+            Minimize command.
+            To be bound in the view.
+            </summary>
+        </member>
+        <member name="P:SrkToolkit.Xaml.Behaviors.WindowControls.CloseCommand">
+            <summary>
+            Close command.
+            To be bound in the view.
+            </summary>
+        </member>
+        <member name="T:SrkToolkit.Xaml.Converters.BoolToVisibilityConverter">
+            <summary>
+            Converts a boolean to a <see cref="T:System.Windows.Visibility"/>.
+            </summary>
+        </member>
+        <member name="M:SrkToolkit.Xaml.Converters.BoolToVisibilityConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a boolean to a <see cref="T:System.Windows.Visibility"/>.
+            If value is null, <see cref="F:System.Windows.Visibility.Collapsed"/> is returned.
+            </summary>
+            <param name="value">
+            a boolean to convert (nullable or not)
+            </param>
+            <param name="targetType"></param>
+            <param name="parameter">
+            Reverse the behavior if begins with '!'.
+            Will return <see cref="F:System.Windows.Visibility.Visible"/> for null value if it contains 'N'.
+            Will return <see cref="F:System.Windows.Visibility.Hidden"/> instead of <see cref="F:System.Windows.Visibility.Collapsed"/> if it contains 'H'.
+            </param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SrkToolkit.Xaml.Converters.BoolToVisibilityConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Modifies the target data before passing it to the source object.  This method is called only in <see cref="F:System.Windows.Data.BindingMode.TwoWay"/> bindings.
+            </summary>
+            <param name="value">The target data being passed to the source.</param>
+            <param name="targetType">The <see cref="T:System.Type"/> of data expected by the source object.</param>
+            <param name="parameter">An optional parameter to be used in the converter logic.</param>
+            <param name="culture">The culture of the conversion.</param>
+            <returns>
+            The value to be passed to the source object.
+            </returns>
+        </member>
+        <member name="T:SrkToolkit.Xaml.Converters.DateTimeDateConverter">
+            <summary>
+            Displays a date from a <see cref="T:System.DateTime"/>.
+            </summary>
+        </member>
+        <member name="M:SrkToolkit.Xaml.Converters.DateTimeDateConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a value.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="M:SrkToolkit.Xaml.Converters.DateTimeDateConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a value.
+            </summary>
+            <param name="value">The value that is produced by the binding target.</param>
+            <param name="targetType">The type to convert to.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="T:SrkToolkit.Xaml.Converters.NotNullToVisibilityConverter">
+            <summary>
+            Converts a value to a <see cref="T:System.Windows.Visibility"/> depending on the "nullability" of it.
+            </summary>
+        </member>
+        <member name="M:SrkToolkit.Xaml.Converters.NotNullToVisibilityConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a value to a <see cref="T:System.Windows.Visibility"/> depending on it's existence (null or not).
+            If value is null, <see cref="F:System.Windows.Visibility.Collapsed"/> is returned.
+            If value is not null, <see cref="F:System.Windows.Visibility.Visible"/> is returned.
+            </summary>
+            <param name="value">
+            </param>
+            <param name="targetType"></param>
+            <param name="parameter">
+            Reverse the behavior if begins with '!'.
+            Will return <see cref="F:System.Windows.Visibility.Hidden"/> instead of <see cref="F:System.Windows.Visibility.Collapsed"/> if it contains 'H'.
+            </param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SrkToolkit.Xaml.Converters.NotNullToVisibilityConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Modifies the target data before passing it to the source object.  This method is called only in <see cref="F:System.Windows.Data.BindingMode.TwoWay"/> bindings.
+            </summary>
+            <param name="value">The target data being passed to the source.</param>
+            <param name="targetType">The <see cref="T:System.Type"/> of data expected by the source object.</param>
+            <param name="parameter">An optional parameter to be used in the converter logic.</param>
+            <param name="culture">The culture of the conversion.</param>
+            <returns>
+            The value to be passed to the source object.
+            </returns>
+        </member>
+        <member name="T:SrkToolkit.Xaml.Converters.OppositeBoolConverter">
+            <summary>
+            Converts a boolean value to its opposite.
+            </summary>
+        </member>
+        <member name="M:SrkToolkit.Xaml.Converters.OppositeBoolConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a value.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="M:SrkToolkit.Xaml.Converters.OppositeBoolConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a value.
+            </summary>
+            <param name="value">The value that is produced by the binding target.</param>
+            <param name="targetType">The type to convert to.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="T:SrkToolkit.Xaml.Converters.ToLowerConverter">
+            <summary>
+            Displays a string lower-cased.
+            </summary>
+        </member>
+        <member name="T:SrkToolkit.Xaml.Converters.ToUpperConverter">
+            <summary>
+            Displays a string upper-cased.
+            </summary>
+        </member>
+    </members>
+</doc>
