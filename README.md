@@ -44,6 +44,15 @@ Feel free to use/change this app for your own needs.
 
 My main usage is providing a simple md browser to my non-dev users so they can write and see the documentation they write or review.
 
+To do
+-----
+
+* Build script
+* Document how to quick-start using the app
+* Show navigation through pages using screenshots
+* Add patch for markdownsharp
+* Extract CSS from layout into a CSS file
+
 Possible enhancements
 ---------------------
 
@@ -53,6 +62,9 @@ Possible enhancements
 * Add a button to open a file using a dialog.
 * Listen to clipboard for a path to a md file.
 * Providing the app as a setup or ClickOnce installer.
+* Theme selector
+* Browser selector
+* Print CSS
 
 Notes for external assemblies
 -----------------------------
@@ -61,6 +73,10 @@ Notes for external assemblies
 
 I did a lot of refactor on [uhttpsharp](https://github.com/raistlinthewiz/uhttpsharp). My changes are on my [fork](https://github.com/sandrock/uhttpsharp).
 
+uhttpsharp is licensed under GPLv2.
+
 ### markdownsharp
 
-I had to add delegate to the `Markdown` class of [markdownshrp](http://code.google.com/p/markdownsharp/). Changes are not included here as code. There's only a recompiled assembly. I'll provide a path 
+I had to add delegate to the `Markdown` class of [markdownsharp](http://code.google.com/p/markdownsharp/). Changes are not included here as code. There's only a recompiled assembly. I'll provide a patch later.
+
+markdownsharp is licensed under the MIT license.

@@ -1,53 +1,27 @@
-﻿<Window
+﻿<!--
+MarkDownBrowser
+Copyright 2013 SandRock
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+<Window
     x:Class="Srk.BrowseMark.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:MdConverter="clr-namespace:Markdown.Xaml;assembly=Markdown.Xaml"
-    Title="MainWindow" Height="350" Width="525">
+    Title="MarkDownBrowser" Height="195" Width="395">
     <Window.Resources>
-
-        <Style TargetType="FlowDocument" x:Key="DocumentStyle">
-            <Setter Property="FontFamily"
-                    Value="Calibri" />
-            <Setter Property="TextAlignment"
-                    Value="Left" />
-        </Style>
-
-        <Style x:Key="PageHeader"
-               TargetType="Paragraph">
-            <Setter Property="FontSize"
-                    Value="42" />
-            <Setter Property="Foreground"
-                    Value="#ff000000" />
-            <Setter Property="FontWeight"
-                    Value="Light" />
-        </Style>
-
-        <Style x:Key="SubHeader"
-               TargetType="Paragraph">
-            <Setter Property="FontSize"
-                    Value="20" />
-            <Setter Property="Foreground"
-                    Value="#ff000000" />
-            <Setter Property="FontWeight"
-                    Value="Light" />
-        </Style>
-
-        <Style x:Key="SubHeaderSecondary"
-               TargetType="Paragraph">
-            <Setter Property="FontSize"
-                    Value="20" />
-            <Setter Property="Foreground"
-                    Value="#99000000" />
-            <Setter Property="FontWeight"
-                    Value="Light" />
-        </Style>
-
-        <MdConverter:Markdown x:Key="Markdown"
-                        DocumentStyle="{StaticResource DocumentStyle}"
-                        Heading1Style="{StaticResource PageHeader}"
-                        Heading2Style="{StaticResource SubHeader}"
-                        Heading3Style="{StaticResource SubHeaderSecondary}"/>
 
     </Window.Resources>
 
@@ -57,29 +31,33 @@
             <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        
-        <!--<Grid>
+
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <Button Click="OnOpenButtonClicked">open</Button>
+            <!--<Button Click="OnOpenButtonClicked">open</Button>
             <TextBox Grid.Column="1" />
-            <Button Grid.Column="2" Click="OnGoButtonClicked">go</Button>
-        </Grid>-->
-        
-        <Grid Grid.Row="1" AllowDrop="True" DragOver="Grid_DragOver" Drop="Grid_Drop" DragLeave="Grid_DragLeave">
-            <!--<FlowDocumentScrollViewer Document="{Binding Document}"
-                VerticalAlignment="Stretch" x:Name="viewer"
-                HorizontalAlignment="Stretch" />-->
-            <!--<WebBrowser x:Name="browser" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />-->
-            <TextBlock Text="Drop a MD file here." />
+            <Button Grid.Column="2" Click="OnGoButtonClicked">go</Button>-->
+            <TextBlock Grid.ColumnSpan="3" TextWrapping="Wrap">
+                <Run Text="You may find help about MarkDownBrowser on the "/>
+                <Hyperlink NavigateUri="https://github.com/sandrock/MarkDownBrowser" >
+                    <Run Text="github repository" />
+                </Hyperlink>
+                <Run Text=". " />
+            </TextBlock>
         </Grid>
-        
+
+        <Grid Grid.Row="1" AllowDrop="True" DragOver="Grid_DragOver" Drop="Grid_Drop" DragLeave="Grid_DragLeave">
+            <!--<WebBrowser x:Name="browser" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />-->
+            <TextBlock Text="Drop a MD file here." HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" />
+        </Grid>
+
         <Grid Grid.Row="2">
-            <TextBlock Text="{Binding Status}" />
+            <TextBlock Text="{Binding Status}" ToolTip="{Binding Status}" TextTrimming="CharacterEllipsis" />
         </Grid>
     </Grid>
 </Window>

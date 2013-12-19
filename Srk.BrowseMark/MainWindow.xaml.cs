@@ -1,30 +1,39 @@
-﻿
+﻿// MarkDownBrowser
+// Copyright 2013 SandRock
+// 
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation; either version 2
+// of the License, or (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
 namespace Srk.BrowseMark
 {
+    using Microsoft.Win32;
+    using Srk.BrowseMark.LocalHttpServer;
+    using SrkToolkit.Mvvm.Commands;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Globalization;
     using System.IO;
     using System.Linq;
+    using System.Net;
     using System.Text;
     using System.Threading;
     using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Data;
-    using System.Windows.Documents;
     using System.Windows.Input;
     using System.Windows.Markup;
-    using System.Windows.Media;
-    using System.Windows.Media.Imaging;
-    using System.Windows.Navigation;
-    using System.Windows.Shapes;
-    using Markdown.Xaml;
-    using Microsoft.Win32;
-    using SrkToolkit.Mvvm.Commands;
     using uhttpsharp;
-    using System.Net;
-    using Srk.BrowseMark.LocalHttpServer;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -33,10 +42,6 @@ namespace Srk.BrowseMark
     {
         private string address;
         private string status;
-        private TextToFlowDocumentConverter converter;
-        private FlowDocument document;
-        private Markdown md;
-        private string xaml;
         private ICommand goToPageCommand;
         private HttpServer server;
 
@@ -44,11 +49,7 @@ namespace Srk.BrowseMark
         {
             this.InitializeComponent();
             this.DataContext = this;
-            this.md = this.Resources["Markdown"] as Markdown;
-            this.converter = new TextToFlowDocumentConverter()
-            {
-                Markdown = this.md,
-            };
+
             this.Status = "Ready.";
 
             try
@@ -76,136 +77,26 @@ namespace Srk.BrowseMark
             set { this.SetValue(ref status, value, "Status"); }
         }
 
-        public FlowDocument Document
-        {
-            get { return this.document; }
-            set { this.SetValue(ref document, value, "Document"); }
-        }
+        ////private void OnOpenButtonClicked(object sender, RoutedEventArgs e)
+        ////{
+        ////    var diag = new OpenFileDialog()
+        ////    {
+        ////        DefaultExt = "Markdown file|*.md,*.markdown",
+        ////    };
+        ////    if (diag.ShowDialog(this) == true)
+        ////    {
+        ////        this.Address = diag.FileName;
+        ////        this.Load(this.address);
+        ////    }
+        ////}
 
-        public string Xaml
-        {
-            get { return this.xaml; }
-            set { this.SetValue(ref xaml, value, "Xaml"); }
-        }
-
-        public ICommand GoToPage
-        {
-            [System.Diagnostics.DebuggerStepThrough]
-            get { return this.goToPageCommand ?? (this.goToPageCommand = new RelayCommand<string>(this.OnGoToPage)); }
-        }
-
-        private void OnOpenButtonClicked(object sender, RoutedEventArgs e)
-        {
-            var diag = new OpenFileDialog()
-            {
-                DefaultExt = "Markdown file|*.md,*.markdown",
-            };
-            if (diag.ShowDialog(this) == true)
-            {
-                this.Address = diag.FileName;
-                this.Load(this.address);
-            }
-        }
-
-        private void OnGoButtonClicked(object sender, RoutedEventArgs e)
-        {
-            if (!string.IsNullOrEmpty(this.Address))
-            {
-                this.Load(this.address);
-            }
-        }
-
-        private void Load(string address)
-        {
-            var url = MdHandler.GetDocumentsUrl(address, this.server.Port);
-            System.Diagnostics.Process.Start(url);
-            
-            ////this.browser.Navigate(url);
-            return;
-
-            ThreadPool.QueueUserWorkItem(_ =>
-            {
-                string content = null;
-                try
-                {
-                    if (address.StartsWith("http"))
-                    {
-                        this.Dispatcher.BeginInvoke(() => 
-                        {
-                            this.Status = "HTTP is not yet supported.";
-                        });
-                    }
-                    else if (File.Exists(address))
-                    {
-                        this.Dispatcher.BeginInvoke(() =>
-                        {
-                            this.Status = "Loading file...";
-                        });
-                        ////content = File.ReadAllText(address);
-
-                        
-
-
-                        ////HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url);
-                        ////var response = request.GetResponse();
-                        ////using (var responseStream = response.GetResponseStream())
-                        ////using   (var responseStreamReader = new StreamReader(responseStream))
-                        ////{
-                        ////    content = responseStreamReader.ReadToEnd();
-                        ////}
-
-                    }
-                }
-                catch (Exception ex)
-                {
-                    this.status = ex.Message;
-                }
-
-                if (content != null)
-                {
-
-                    this.Dispatcher.BeginInvoke(() =>
-                    {
-                        this.Document = this.converter.Convert(content, typeof(FlowDocument), null, CultureInfo.CurrentCulture) as FlowDocument;
-
-                        this.Xaml =  XamlWriter.Save(this.Document);
-                        //this.Xaml = this.md.Transform(content);
-
-                        var pages = this.Document.FindChildren<ContainerVisual>(true, false);
-                        foreach (var page in pages)
-                        {
-                            page.SetValue(FrameworkElement.DataContextProperty, this);
-                        }
-
-                        this.Status = "Loaded.";
-                    });
-                }
-            });
-        }
-
-
-
-
-
-        private void OnGoToPage(string param)
-        {
-            if (param == null)
-                return;
-
-            if (!param.StartsWith("http"))
-            {
-                
-            }
-        }
-
-
-
-
-
-
-
-
-
+        ////private void OnGoButtonClicked(object sender, RoutedEventArgs e)
+        ////{
+        ////    if (!string.IsNullOrEmpty(this.Address))
+        ////    {
+        ////        this.Load(this.address);
+        ////    }
+        ////}
 
         protected void RaisePropertyChanged(string propertyName)
         {
@@ -251,6 +142,12 @@ namespace Srk.BrowseMark
             base.OnClosed(e);
         }
 
+        private void Load(string address)
+        {
+            var url = MdHandler.GetDocumentsUrl(address, this.server.Port);
+            System.Diagnostics.Process.Start(url);
+        }
+
         private void Grid_DragOver(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
@@ -261,7 +158,6 @@ namespace Srk.BrowseMark
             {
                 e.Effects = DragDropEffects.None;
             }
-
         }
 
         private void Grid_Drop(object sender, DragEventArgs e)
