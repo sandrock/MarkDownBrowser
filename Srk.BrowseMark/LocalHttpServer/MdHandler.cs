@@ -62,6 +62,24 @@ namespace Srk.BrowseMark.LocalHttpServer
             if (File.Exists(path))
             {
                 string folder = Path.GetDirectoryName(path);
+
+                var variables = new Dictionary<string, Func<string>>();
+                variables.Add("/title///", () => System.Web.HttpUtility.HtmlEncode(path));
+                variables.Add("/footer///", () => "");
+
+                var navMd = FolderHandler.GetFolderContentsAsMarkdown(folder, context);
+                {
+                    // pass it through markdown
+                    var mdOptions = new MarkdownSharp.MarkdownOptions
+                    {
+                        HyperlinkProcessor = s => MdHandler.GetDocumentsUrl(folder, s, context.Server.Port),
+                        ImageLinkProcessor = s => PictureHandler.GetDocumentsUrl(Path.Combine(folder, s), context.Server.Port),
+                    };
+                    var md = new MarkdownSharp.Markdown(mdOptions);
+                    var result = md.Transform(navMd);
+                    variables.Add("/nav///", () => result);
+                }
+
                 try
                 {
                     // open and read file
@@ -88,19 +106,15 @@ namespace Srk.BrowseMark.LocalHttpServer
                         try
                         {
                             var md = new MarkdownSharp.Markdown(mdOptions);
-
                             var result = md.Transform(content);
+                            variables.Add("/content///", () => result);
 
                             // open layout from assembly's ressources, replace a few variables
-                            var layout = this.GetLayout();
-                            var variables = new Dictionary<string, Func<string>>();
-                            variables.Add("/title///", () => System.Web.HttpUtility.HtmlEncode(path));
-                            variables.Add("/content///", () => result);
-                            variables.Add("/footer///", () => "");
+                            var layout = GetLayout();
                             var html = ProcessVariables(variables, layout, CultureInfo.InvariantCulture);
 
                             // and we're done
-                            return new HttpResponse(context, HttpResponseCode.Found, html);
+                            return new HttpResponse(context, HttpResponseCode.Ok, html);
                         }
                         catch (Exception ex)
                         {
@@ -114,6 +128,8 @@ namespace Srk.BrowseMark.LocalHttpServer
                     // oops, file error
                     return new uhttpsharp.HttpResponse(context, HttpResponseCode.NotFound, "failed to open file" + Environment.NewLine + path + Environment.NewLine + ex.Message + Environment.NewLine + Environment.NewLine + "----" + Environment.NewLine + ex.ToString(), "text/plain; charset=utf-8");
                 }
+
+
             }
             else
             {
@@ -122,9 +138,9 @@ namespace Srk.BrowseMark.LocalHttpServer
             }
         }
 
-        private string GetLayout()
+        internal static string GetLayout()
         {
-            return this.GetAssemblyResourceAsText(this.GetType().Assembly, "Layout.html", Encoding.Unicode);
+            return GetAssemblyResourceAsText(typeof(MdHandler).Assembly, "Layout.html", Encoding.Unicode);
         }
 
         /// <summary>
@@ -145,30 +161,6 @@ namespace Srk.BrowseMark.LocalHttpServer
             }
 
             return text;
-        }
-
-        /// <summary>
-        /// Gets the specified resource as text.
-        /// </summary>
-        /// <param name="path">The path.</param>
-        /// <returns></returns>
-        private string GetAssemblyResourceAsText(Assembly assembly, string path, Encoding encoding)
-        {
-            path = assembly.GetName().Name + "." + path;
-            var stream = assembly.GetManifestResourceStream(path);
-            if (stream == null)
-                return null;
-
-            try
-            {
-                var reader = new StreamReader(stream, encoding);
-                var result = reader.ReadToEnd();
-                return result;
-            }
-            finally
-            {
-                stream.Close();
-            }
         }
 
         public static string GetDocumentsUrl(string address, int port)

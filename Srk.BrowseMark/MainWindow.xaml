@@ -51,7 +51,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
             </TextBlock>
         </Grid>
 
-        <Grid Grid.Row="1" AllowDrop="True" DragOver="Grid_DragOver" Drop="Grid_Drop" DragLeave="Grid_DragLeave">
+        <Grid Grid.Row="1" Grid.ColumnSpan="3" AllowDrop="True" DragOver="Grid_DragOver" Drop="Grid_Drop" DragLeave="Grid_DragLeave"
+              HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Focusable="True">
             <!--<WebBrowser x:Name="browser" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />-->
             <TextBlock Text="Drop a MD file here." HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" />
         </Grid>

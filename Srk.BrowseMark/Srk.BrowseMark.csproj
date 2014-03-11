@@ -91,6 +91,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Extensions.cs" />
+    <Compile Include="LocalHttpServer\CssHandler.cs" />
+    <Compile Include="LocalHttpServer\FolderHandler.cs" />
+    <Compile Include="LocalHttpServer\HttpRequestHandler.cs" />
     <Compile Include="LocalHttpServer\MdHandler.cs" />
     <Compile Include="LocalHttpServer\PictureHandler.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -117,6 +120,8 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <None Include="Markdown.less" />
+    <None Include="Layout.less" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -148,6 +153,20 @@
       <ProductName>Windows Installer 4.5</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Markdown.css">
+      <DependentUpon>Markdown.less</DependentUpon>
+    </EmbeddedResource>
+    <Content Include="Markdown.min.css">
+      <DependentUpon>Markdown.less</DependentUpon>
+    </Content>
+    <EmbeddedResource Include="Layout.css">
+      <DependentUpon>Layout.less</DependentUpon>
+    </EmbeddedResource>
+    <Content Include="Layout.min.css">
+      <DependentUpon>Layout.less</DependentUpon>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

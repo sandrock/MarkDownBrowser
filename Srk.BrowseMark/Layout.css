@@ -1,0 +1,135 @@
+﻿/* RESET
+=============================================================================*/
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+/* BODY
+=============================================================================*/
+body {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #333;
+  background-color: #e2e2e2;
+  margin: 0 auto;
+}
+body > *:first-child {
+  margin-top: 0 !important;
+}
+body > *:last-child {
+  margin-bottom: 0 !important;
+}
+header {
+  padding: 20px;
+}
+.main {
+  padding: 0 20px;
+  display: flex;
+  display: flexbox;
+  flex-flow: column  nowrap;
+  -ms-flex-flow: column  nowrap;
+}
+.main > nav {
+  border: 1px solid gray;
+  padding: 20px;
+}
+.main > article {
+  border: 1px solid gray;
+  background: lightgray;
+  padding: 20px;
+}
+footer {
+  padding: 20px;
+}
+@media all and (max-width: 600px) {
+  .main {
+    flex-direction: column;
+  }
+  .main > nav,
+  .main > article {
+    order: 0;
+    width: auto;
+  }
+}
