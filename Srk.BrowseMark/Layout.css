@@ -102,6 +102,8 @@ body > *:last-child {
   margin-bottom: 0 !important;
 }
 header {
+  border: 1px solid gray;
+  margin: 20px;
   padding: 20px;
 }
 .main {
@@ -111,16 +113,18 @@ header {
   flex-flow: column  nowrap;
   -ms-flex-flow: column  nowrap;
 }
-.main > nav {
-  border: 1px solid gray;
-  padding: 20px;
-}
-.main > article {
+.main article {
   border: 1px solid gray;
   background: lightgray;
   padding: 20px;
 }
+.page > nav {
+  border: 1px solid gray;
+  padding: 20px;
+  margin: 20px 20px;
+}
 footer {
+  margin: 20px;
   padding: 20px;
 }
 @media all and (max-width: 600px) {
@@ -131,5 +135,22 @@ footer {
   .main > article {
     order: 0;
     width: auto;
+  }
+}
+@media print {
+  header,
+  footer,
+  nav {
+    display: none;
+  }
+  .main {
+    display: block;
+    padding: 0px;
+    margin: 0px;
+  }
+  .main article {
+    border-width: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
   }
 }

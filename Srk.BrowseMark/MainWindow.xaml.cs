@@ -77,27 +77,6 @@ namespace Srk.BrowseMark
             set { this.SetValue(ref status, value, "Status"); }
         }
 
-        ////private void OnOpenButtonClicked(object sender, RoutedEventArgs e)
-        ////{
-        ////    var diag = new OpenFileDialog()
-        ////    {
-        ////        DefaultExt = "Markdown file|*.md,*.markdown",
-        ////    };
-        ////    if (diag.ShowDialog(this) == true)
-        ////    {
-        ////        this.Address = diag.FileName;
-        ////        this.Load(this.address);
-        ////    }
-        ////}
-
-        ////private void OnGoButtonClicked(object sender, RoutedEventArgs e)
-        ////{
-        ////    if (!string.IsNullOrEmpty(this.Address))
-        ////    {
-        ////        this.Load(this.address);
-        ////    }
-        ////}
-
         protected void RaisePropertyChanged(string propertyName)
         {
             var handler = this.PropertyChanged;
