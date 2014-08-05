@@ -50,7 +50,7 @@ namespace Srk.BrowseMark
             this.InitializeComponent();
             this.DataContext = this;
 
-            this.Status = "Ready.";
+            this.Status = null;
 
             try
             {
@@ -157,6 +157,22 @@ namespace Srk.BrowseMark
         private void Grid_DragLeave(object sender, DragEventArgs e)
         {
             e.Effects = DragDropEffects.None;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo("https://github.com/sandrock/MarkDownBrowser"));
+        }
+
+        private void OnMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            DragMove();
+            e.Handled = true;
         }
     }
 }

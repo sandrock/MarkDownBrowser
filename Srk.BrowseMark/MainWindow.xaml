@@ -17,52 +17,106 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 -->
 <Window
-    x:Class="Srk.BrowseMark.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Title="MarkDownBrowser" Height="195" Width="395">
+    xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
+    xmlns:SrkConverters="clr-namespace:SrkToolkit.Xaml.Converters;assembly=SrkToolkit.Xaml"
+    x:Class="Srk.BrowseMark.MainWindow"
+    Title="MarkDownBrowser" Height="32" WindowStyle="None" SizeToContent="Height" ResizeMode="CanMinimize" Icon="Logo256narrow.ico" Width="594" BorderBrush="{DynamicResource TheBlueBrush}" BorderThickness="1">
     <Window.Resources>
+        <SrkConverters:NotNullToVisibilityConverter x:Key="NotNullToVisibilityConverter" />
+        
+    	<LinearGradientBrush x:Key="ButtonNormalBackground" EndPoint="0,1" StartPoint="0,0">
+    		<GradientStop Color="#F3F3F3" Offset="0"/>
+    		<GradientStop Color="#EBEBEB" Offset="0.5"/>
+    		<GradientStop Color="#DDDDDD" Offset="0.5"/>
+    		<GradientStop Color="#CDCDCD" Offset="1"/>
+    	</LinearGradientBrush>
+    	<SolidColorBrush x:Key="ButtonNormalBorder" Color="#FF707070"/>
+    	<SolidColorBrush x:Key="TheBlueBrush" Color="#FF4080D0"/>
+    	<SolidColorBrush x:Key="TheFocusedBorderBrush" Color="White"/>
+    	<SolidColorBrush x:Key="TheUnfocusedBorderBrush" Color="#01FFFFFF"/>
+    	<SolidColorBrush x:Key="TheOverBlueBrush" Color="#FF78B1F7"/>
+
+    	<Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
+    		<Setter Property="Background" Value="{StaticResource TheBlueBrush}"/>
+    		<Setter Property="BorderBrush" Value="{StaticResource TheUnfocusedBorderBrush}"/>
+    		<Setter Property="BorderThickness" Value="1"/>
+    		<Setter Property="Foreground" Value="White"/>
+    		<Setter Property="FontSize" Value="16"/>
+    		<Setter Property="HorizontalContentAlignment" Value="Center"/>
+    		<Setter Property="VerticalContentAlignment" Value="Center"/>
+    		<Setter Property="Padding" Value="1"/>
+    		<Setter Property="Template">
+    			<Setter.Value>
+    				<ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" Background="{DynamicResource TheBlueBrush}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0">
+    						<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="0" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+    					</Border>
+    					<ControlTemplate.Triggers>
+    						<Trigger Property="IsMouseOver" Value="True">
+    							<Setter Property="Background" TargetName="border" Value="{DynamicResource TheOverBlueBrush}"/>
+    						</Trigger>
+    						<Trigger Property="IsKeyboardFocused" Value="true">
+    							<Setter Property="BorderBrush" Value="{StaticResource TheFocusedBorderBrush}" />
+    						</Trigger>
+    						<Trigger Property="ToggleButton.IsChecked" Value="true">
+    							<Setter Property="Background" Value="White"/>
+    							<Setter Property="Foreground" Value="{StaticResource TheBlueBrush}"/>
+    						</Trigger>
+    						<Trigger Property="IsEnabled" Value="false">
+    							<Setter Property="Foreground" Value="#ADADAD"/>
+    						</Trigger>
+    					</ControlTemplate.Triggers>
+    				</ControlTemplate>
+    			</Setter.Value>
+    		</Setter>
+    	</Style>
 
     </Window.Resources>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+    <Grid Height="32" MouseLeftButtonDown="OnMouseLeftButtonDown">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="32"/>
+			<ColumnDefinition/>
+			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition Width="Auto"/>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition />
+		</Grid.RowDefinitions>
 
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-
-            <!--<Button Click="OnOpenButtonClicked">open</Button>
+		<Grid Background="#ff4080D0" Cursor="SizeAll">
+            <Image Margin="0" Source="pack://application:,,,/Logo256narrowwhite.png" Stretch="UniformToFill" />
+			
+			<!--<Button Click="OnOpenButtonClicked">open</Button>
             <TextBox Grid.Column="1" />
             <Button Grid.Column="2" Click="OnGoButtonClicked">go</Button>-->
-            <TextBlock Grid.ColumnSpan="3" TextWrapping="Wrap">
-                <Run Text="You may find help about MarkDownBrowser on the "/>
-                <Hyperlink NavigateUri="https://github.com/sandrock/MarkDownBrowser" >
-                    <Run Text="github repository" />
-                </Hyperlink>
-                <Run Text=". " />
-            </TextBlock>
-        </Grid>
+		</Grid>
 
-        <Grid Grid.Row="1" Grid.ColumnSpan="3" AllowDrop="True" Background="Transparent"
-              DragOver="Grid_DragOver" Drop="Grid_Drop" DragLeave="Grid_DragLeave"
-              HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Focusable="True"
-              >
-            <!--<WebBrowser x:Name="browser" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />-->
-            <TextBlock Text="Drop a MD file here." 
-                       HorizontalAlignment="Center" VerticalAlignment="Center"
-                       TextWrapping="Wrap" TextAlignment="Center" />
-        </Grid>
+		<Grid Grid.Column="1" AllowDrop="True" Background="Transparent"
+			DragOver="Grid_DragOver" Drop="Grid_Drop" DragLeave="Grid_DragLeave"
+			HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Focusable="True">
+			<TextBlock Text="Drop a MD file here." 
+				HorizontalAlignment="Center" VerticalAlignment="Center"
+				TextWrapping="Wrap" TextAlignment="Center" />
+			<Grid Visibility="{Binding Status, Converter={StaticResource NotNullToVisibilityConverter}}" Background="White">
+				<TextBlock Text="{Binding Status}" ToolTip="{Binding Status}" TextTrimming="CharacterEllipsis" />
+			</Grid>
+		</Grid>
 
-        <Grid Grid.Row="2">
-            <TextBlock Text="{Binding Status}" ToolTip="{Binding Status}" TextTrimming="CharacterEllipsis" />
-        </Grid>
-    </Grid>
+		<Grid Grid.Column="2" Width="32">
+			<Button Content="?" Style="{DynamicResource ButtonStyle1}" Click="Button_Click_1">
+				<Button.ToolTip>
+					<TextBlock>
+						<Run Text="You may find help about MarkDownBrowser on the "/><Run Text=" "/><Hyperlink NavigateUri="https://github.com/sandrock/MarkDownBrowser" ><Run Text="github repository" /></Hyperlink><Run Text=" "/><Run Text=". " />
+					</TextBlock>
+				</Button.ToolTip>
+			</Button>
+		</Grid>
+
+		<Grid Grid.Column="3" Width="32">
+			<Button Content="r" FontFamily="Webdings" Style="{DynamicResource ButtonStyle1}" Click="Button_Click" Margin="1 0 0 0" ToolTip="Exit" />
+		</Grid>
+	</Grid>
 </Window>

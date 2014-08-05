@@ -28,6 +28,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <ExpressionBlendVersion>5.0.40218.0</ExpressionBlendVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -55,6 +56,7 @@
     <Reference Include="MarkdownSharp">
       <HintPath>..\Libs\NET40\MarkdownSharp.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework.Aero" />
     <Reference Include="SrkToolkit.Mvvm">
       <HintPath>..\Libs\SrkToolkit\WPF4\SrkToolkit.Mvvm.dll</HintPath>
     </Reference>
@@ -162,6 +164,7 @@
       <DependentUpon>Markdown.less</DependentUpon>
     </EmbeddedResource>
     <Resource Include="Logo256narrow.ico" />
+    <Resource Include="Logo256narrowwhite.png" />
     <Content Include="Markdown.min.css">
       <DependentUpon>Markdown.less</DependentUpon>
     </Content>
