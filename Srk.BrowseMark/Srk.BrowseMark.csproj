@@ -48,6 +48,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Logo256narrow.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="MarkdownSharp">
       <HintPath>..\Libs\NET40\MarkdownSharp.dll</HintPath>
@@ -158,6 +161,7 @@
     <EmbeddedResource Include="Markdown.css">
       <DependentUpon>Markdown.less</DependentUpon>
     </EmbeddedResource>
+    <Resource Include="Logo256narrow.ico" />
     <Content Include="Markdown.min.css">
       <DependentUpon>Markdown.less</DependentUpon>
     </Content>
