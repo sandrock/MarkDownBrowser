@@ -48,8 +48,8 @@ namespace Srk.BrowseMark
         public MainWindow()
         {
             this.InitializeComponent();
-            this.DataContext = this;
 
+            this.DataContext = this;
             this.Status = null;
 
             var config = AppConfiguration.Default;
@@ -67,6 +67,14 @@ namespace Srk.BrowseMark
                 {
                     this.Status = "Failed to start internal HTTP server: " + ex.Message;
                 } 
+            }
+
+            if (App.Actual.CommandLineArgs != null && App.Actual.CommandLineArgs.Length > 0)
+            {
+                foreach (var file in App.Actual.CommandLineArgs)
+                {
+                    this.Load(file);
+                }
             }
         }
 

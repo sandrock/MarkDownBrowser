@@ -20,7 +20,9 @@ namespace Srk.BrowseMark
     using System;
     using System.Collections.Generic;
     using System.Configuration;
+    using System.Diagnostics;
     using System.Linq;
+    using System.Threading;
     using System.Windows;
 
     /// <summary>
@@ -28,5 +30,22 @@ namespace Srk.BrowseMark
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+        }
+
+        public static App Actual
+        {
+            get { return (App)App.Current; }
+        }
+
+        public string[] CommandLineArgs { get; set; }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            this.CommandLineArgs = e.Args;
+        }
     }
 }
