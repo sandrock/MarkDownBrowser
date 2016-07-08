@@ -11,7 +11,16 @@ While building software applications, the users often needs to show read/write r
 * Markdown can be used to write the application's documentation. MD files can be embedded in the app to provide a custom-built help explorer.
  * Providing a good editing tool to non-developers is a start. Providing them a "viewer" is nice for them. 
 * Markdown can be used by end-users to write a review or a description.  
- * Within a non-web application, a web-rendering of Markdown may be a good implementation.  
+ * Within a non-web application, a web-rendering of Markdown may be a good implementation.
+
+How does it work?
+----------------- 
+
+Open the app, drag a text file over it. Your browser opens a page showing your file.
+
+![drag and drop a MD file into the app, the default web browser opens the file](drag-drop.png)
+
+There are links to other files at the bottom of the page to help you open them.
 
 How it's built, some history
 ----------------------------
@@ -26,9 +35,7 @@ So I started building the web-rendering and stumbled on [uhttpsharp](https://git
 
 The HTTP thing was working. I had to [refactor uhttpsharp a bit](https://github.com/sandrock/uhttpsharp) BTW.   
 
-Now there is a bug with the `WebBrowser`. "Navigation to the webpage was canceled" it says. However it works well with Firefox. Weird. "This page can’t be displayed" says IE 11. OK, it's a IE thing, let's do it lean: cancel IE. So I removed the integrated browser code. I replaced it with a open-in-default-browser action. The `WebBrowser` is not a drop zone for the MD file you want to open.
-
-![drag and drop a MD file into the app, the default web browser opens the file](drag-drop.png)
+Now there is a bug with the `WebBrowser`. "Navigation to the webpage was canceled" it says. However it works well with Firefox. Weird. "This page can’t be displayed" says IE 11. OK, it's a IE thing, let's do it lean: cancel IE. So I removed the integrated browser code. I replaced it with a open-in-default-browser action. The `WebBrowser` is now a drop zone for the MD file you want to open.
 
 The links between md files are rewritten during md render using a custom delegate integrated into the rendering engine's code ([markdownshrp](http://code.google.com/p/markdownsharp/)).
 
