@@ -43,7 +43,7 @@ namespace Srk.BrowseMark.LocalHttpServer
                 return new uhttpsharp.HttpResponse(context, HttpResponseCode.NotFound, "name is empty", "text/plain; charset=utf-8");
             }
 
-            var resource = GetAssemblyResourceAsText(this.GetType().Assembly, name + ".css", Encoding.Unicode);
+            var resource = GetAssemblyResourceAsText(this.GetType().Assembly, name + ".min.css", Encoding.Unicode);
 
             if (resource != null)
             {

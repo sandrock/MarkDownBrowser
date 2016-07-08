@@ -52,14 +52,21 @@ namespace Srk.BrowseMark
 
             this.Status = null;
 
-            try
+            var config = AppConfiguration.Default;
+
+            for (ushort portNumber = config.MinimumTcpPort; portNumber < ushort.MaxValue && portNumber < (config.MinimumTcpPort + 100); portNumber++)
             {
-                this.server = new HttpServer(IPAddress.Loopback, 8001);
-                this.server.Start();
-            }
-            catch (Exception ex)
-            {
-                this.Status = "Failed to start internal HTTP server: " + ex.Message;
+                try
+                {
+                    this.server = new HttpServer(IPAddress.Loopback, portNumber);
+                    this.server.Start();
+                    this.Status = "Ready. Listening on port " + portNumber + ". ";
+                    break;
+                }
+                catch (Exception ex)
+                {
+                    this.Status = "Failed to start internal HTTP server: " + ex.Message;
+                } 
             }
         }
 
@@ -121,7 +128,7 @@ namespace Srk.BrowseMark
             base.OnClosed(e);
         }
 
-        private void Load(string address)
+        internal void Load(string address)
         {
             var url = MdHandler.GetDocumentsUrl(address, this.server.Port);
             System.Diagnostics.Process.Start(url);
